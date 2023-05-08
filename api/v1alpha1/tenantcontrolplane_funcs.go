@@ -64,6 +64,8 @@ func (in *TenantControlPlane) DeclaredControlPlaneAddress(ctx context.Context, c
 		for _, lb := range loadBalancerStatus.Ingress {
 			if ip := lb.IP; len(ip) > 0 {
 				return ip, nil
+			} else if hostname := lb.Hostname; len(hostname) > 0 {
+				return hostname, nil
 			}
 		}
 	}
